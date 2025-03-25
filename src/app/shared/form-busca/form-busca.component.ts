@@ -10,8 +10,8 @@ import { FormBuscaService } from '../../core/services/form-busca.service';
   styleUrl: './form-busca.component.scss'
 })
 export class FormBuscaComponent {
-  constructor(public dialog: MatDialog, 
-    private formBuscaService : FormBuscaService){}
+  constructor(public dialog: MatDialog,
+    public formBuscaService : FormBuscaService ){}
 
   openDialog() {
     this.dialog.open(ModalComponent, {
