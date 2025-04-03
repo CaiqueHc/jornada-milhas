@@ -65,7 +65,7 @@ export class FormBuscaService {
       this.formBusca.patchValue({
         tipo,
       });
-      console.log(`Tipo alterado para: ${tipo}`);
+      // console.log(`Tipo alterado para: ${tipo}`);
     }
   }
 

@@ -30,8 +30,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { PromocoesComponent } from './pages/home/promocoes/promocoes.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { DropdownUfComponent } from './shared/form-busca/dropdown-uf/dropdown-uf.component';
+import { DropdownUfComponent } from './shared/dropdown-uf/dropdown-uf.component';
 import { SeletorPassageiroComponent } from './shared/seletor-passageiro/seletor-passageiro.component';
+import { LoginComponent } from './pages/login/login.component';
+import { FormBaseComponent } from './shared/form-base/form-base.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -50,6 +54,8 @@ import { SeletorPassageiroComponent } from './shared/seletor-passageiro/seletor-
     PromocoesComponent,
     DropdownUfComponent,
     SeletorPassageiroComponent,
+    LoginComponent,
+    FormBaseComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,7 +73,9 @@ import { SeletorPassageiroComponent } from './shared/seletor-passageiro/seletor-
     MatDialogModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatRadioModule,
+    MatDividerModule,
   ],
   providers: [provideNativeDateAdapter()],
   bootstrap: [AppComponent],

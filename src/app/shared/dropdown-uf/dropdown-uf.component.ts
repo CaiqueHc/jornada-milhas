@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable, map, startWith } from 'rxjs';
-import { FormBuscaService } from '../../../core/services/form-busca.service';
-import { UnidadeFederativaService } from '../../../core/services/unidade-federativa.service';
-import { UnidadeFederativa } from '../../../core/types/types';
+import { FormBuscaService } from '../../core/services/form-busca.service';
+import { UnidadeFederativaService } from '../../core/services/unidade-federativa.service';
+import { UnidadeFederativa } from '../../core/types/types';
 
 @Component({
   selector: 'app-dropdown-uf',
@@ -14,6 +14,7 @@ import { UnidadeFederativa } from '../../../core/types/types';
 export class DropdownUfComponent implements OnInit {
   @Input() label: string = '';
   @Input() iconPrefixo: string = '';
+  @Input() placeholder: string = "";
   @Input() control!: FormControl;
 
   unidadesFederativas: UnidadeFederativa[] = [];
@@ -25,7 +26,7 @@ export class DropdownUfComponent implements OnInit {
   ngOnInit(): void {
     this.unidadeFederativaService.listar().subscribe((dados) => {
       this.unidadesFederativas = dados;
-      console.log(this.unidadesFederativas);
+      // console.log(this.unidadesFederativas);
     });
     this.filteredOptions$ = this.control.valueChanges.pipe(
       startWith(''),

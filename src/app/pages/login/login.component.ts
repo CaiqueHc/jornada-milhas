@@ -1,0 +1,42 @@
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AutenticacaoService } from '../../core/services/autenticacao.service';
+
+@Component({
+  selector: 'app-login',
+  standalone: false,
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.scss',
+})
+export class LoginComponent implements OnInit {
+  loginForm!: FormGroup;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AutenticacaoService,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
+    this.loginForm = this.formBuilder.group({
+      email: [null, [Validators.required, Validators.email]],
+      senha: [null, Validators.required],
+    });
+  }
+
+  login() {
+    const email = this.loginForm.value.email;
+    const senha = this.loginForm.value.senha;
+
+    this.authService.autenticar(email, senha).subscribe({
+      next: (value) => {
+        // console.log('Login feito', value),
+        this.router.navigateByUrl('/');
+      },
+      error: (err) => {
+        // console.log('Erro no login', err);
+      },
+    });
+  }
+}
