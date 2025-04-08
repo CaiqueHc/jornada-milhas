@@ -1,0 +1,21 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
+import { PessoaUsuario } from '../types/types';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class CadastroService {
+  private apiUrl = environment.apiUrl;
+
+  constructor(private http: HttpClient) {}
+
+  cadastrar(pessoaUsuario: PessoaUsuario): Observable<PessoaUsuario> {
+    return this.http.post<PessoaUsuario>(
+      `${this.apiUrl}/auth/cadastro`,
+      pessoaUsuario
+    );
+  }
+}

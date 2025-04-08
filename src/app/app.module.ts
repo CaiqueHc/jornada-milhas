@@ -36,6 +36,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { FormBaseComponent } from './shared/form-base/form-base.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDividerModule } from '@angular/material/divider';
+import { CadastroComponent } from './pages/cadastro/cadastro.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,7 @@ import { MatDividerModule } from '@angular/material/divider';
     SeletorPassageiroComponent,
     LoginComponent,
     FormBaseComponent,
+    CadastroComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,6 +79,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatAutocompleteModule,
     MatRadioModule,
     MatDividerModule,
+    MatCheckboxModule,
   ],
   providers: [provideNativeDateAdapter()],
   bootstrap: [AppComponent],

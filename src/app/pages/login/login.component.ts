@@ -7,9 +7,10 @@ import { AutenticacaoService } from '../../core/services/autenticacao.service';
   selector: 'app-login',
   standalone: false,
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss',
+  styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit{
+
   loginForm!: FormGroup;
 
   constructor(
@@ -21,22 +22,24 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       email: [null, [Validators.required, Validators.email]],
-      senha: [null, Validators.required],
-    });
+      senha: [null, Validators.required]
+    })
   }
 
   login() {
-    const email = this.loginForm.value.email;
-    const senha = this.loginForm.value.senha;
-
-    this.authService.autenticar(email, senha).subscribe({
-      next: (value) => {
-        // console.log('Login feito', value),
-        this.router.navigateByUrl('/');
-      },
-      error: (err) => {
-        // console.log('Erro no login', err);
-      },
-    });
+    if(this.loginForm.valid) {
+      const email = this.loginForm.value.email;
+      const senha = this.loginForm.value.senha;
+      this.authService.autenticar(email, senha).subscribe({
+        next: (value) => {
+          console.log('Autenticado com sucesso', value)
+          this.router.navigateByUrl('/')
+          this.loginForm.reset();
+        },
+        error: (err) => {
+          console.log('Problema na autenticação', err)
+        },
+      })
+    }
   }
 }
