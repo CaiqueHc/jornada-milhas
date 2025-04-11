@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { PessoaUsuario } from '../types/types';
 import { Observable } from 'rxjs';
@@ -15,6 +15,15 @@ export class CadastroService {
   cadastrar(pessoaUsuario: PessoaUsuario): Observable<PessoaUsuario> {
     return this.http.post<PessoaUsuario>(
       `${this.apiUrl}/auth/cadastro`,
+      pessoaUsuario
+    );
+  }
+  buscarCadastro(): Observable<PessoaUsuario> {
+    return this.http.get<PessoaUsuario>(`${this.apiUrl}/auth/perfil`);
+  }
+  editarCadastro(pessoaUsuario: PessoaUsuario): Observable<PessoaUsuario> {
+    return this.http.patch<PessoaUsuario>(
+      `${this.apiUrl}/auth/perfil`,
       pessoaUsuario
     );
   }

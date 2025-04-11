@@ -26,7 +26,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { ModalComponent } from './shared/modal/modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BotaoControleComponent } from './shared/botao-controle/botao-controle.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { PromocoesComponent } from './pages/home/promocoes/promocoes.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -38,6 +38,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDividerModule } from '@angular/material/divider';
 import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { PerfilComponent } from './pages/perfil/perfil.component';
+import { AutenticacaoInterceptor } from './core/intercerptors/autenticacao.interceptor';
 
 @NgModule({
   declarations: [
@@ -59,6 +61,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     LoginComponent,
     FormBaseComponent,
     CadastroComponent,
+    PerfilComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,7 +84,10 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatDividerModule,
     MatCheckboxModule,
   ],
-  providers: [provideNativeDateAdapter()],
+  providers: [
+    provideNativeDateAdapter(),
+    [{ HTTP_INTERCEPTORS, useClass: AutenticacaoInterceptor, multi: true }],
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
