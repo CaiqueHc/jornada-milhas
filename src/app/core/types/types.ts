@@ -29,3 +29,6 @@ export interface PessoaUsuario {
   cidade: string;
   estado: UnidadeFederativa;
 }
+
+
+
